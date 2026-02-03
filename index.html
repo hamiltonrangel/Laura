@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treino de Glúteo - Personalizado</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d81b60;
+            --primary-dark: #880e4f;
+            --bg: #f0f2f5;
+            --card-bg: #ffffff;
+            --text: #2d3436;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            color: #636e72;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* Barra de Progresso */
+        .progress-container {
+            background: #dfe6e9;
+            border-radius: 10px;
+            height: 12px;
+            margin-bottom: 25px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        #progress-bar {
+            background: linear-gradient(90deg, var(--primary), #ff4081);
+            width: 0%;
+            height: 100%;
+            transition: width 0.4s ease;
+        }
+
+        /* Cards de Exercício */
+        .exercise-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 6px solid #dfe6e9;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .exercise-card.completed {
+            border-left-color: var(--primary);
+            background-color: #f9f9f9;
+            opacity: 0.7;
+        }
+
+        .checkbox-container {
+            margin-right: 15px;
+            padding-top: 5px;
+        }
+
+        input[type="checkbox"] {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .exercise-name {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-dark);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 13px;
+            color: #636e72;
+            margin-bottom: 10px;
+        }
+
+        .stats i {
+            color: var(--primary);
+            margin-right: 4px;
+        }
+
+        .tip-box {
+            font-size: 13px;
+            background: #fff0f5;
+            padding: 10px;
+            border-radius: 8px;
+            color: #555;
+            border: 1px dashed #d81b60;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background: #2d3436;
+            color: white;
+            border-radius: 15px;
+            font-size: 13px;
+        }
+
+        footer ul {
+            padding-left: 20px;
+            margin: 10px 0 0 0;
+        }
+
+        footer li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Treino de Glúteo <i class="fa-solid fa-dumbbell"></i></h1>
+        <p class="subtitle">Foco em Hipertrofia | 23 anos - ~50kg</p>
+    </header>
+
+    <div class="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <div id="exercise-list">
+        
+        <div class="exercise-card">
+            <div class="checkbox-container">
+                <input type="checkbox" onchange="updateProgress(this)">
+            </div>
+            <div class="content">
+                <span class="exercise-name">1. Elevação Pélvica</span>
+                <div class="stats">
+                    <span><i class="fa-solid fa-layer-group"></i> 4 Séries</span>
+                    <span><i class="fa-solid fa-repeat"></i> 10-12 Reps</span>
+                    <span><i class="fa-solid fa-clock"></i> 90s</span>
+                </div>
+                <div class="tip-box">Segure 2s no topo contraindo bem o glúteo antes de descer.</div>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="checkbox-container">
+                <input type="checkbox" onchange="updateProgress(this)">
+            </div>
+            <div class="content">
+                <span class="exercise-name">2. Agachamento Búlgaro</span>
+                <div class="stats">
+                    <span><i class="fa-solid fa-layer-group"></i> 3 Séries</span>
+                    <span><i class="fa-solid fa-repeat"></i> 10 (cada perna)</span>
+                    <span><i class="fa-solid fa-clock"></i> 90s</span>
+                </div>
+                <div class="tip-box">Incline o tronco levemente para frente para focar no glúteo.</div>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="checkbox-container">
+                <input type="checkbox" onchange="updateProgress(this)">
+            </div>
+            <div class="content">
+                <span class="exercise-name">3. Step-up (Subida)</span>
+                <div class="stats">
+                    <span><i class="fa-solid fa-layer-group"></i> 3 Séries</span>
+                    <span><i class="fa-solid fa-repeat"></i> 12 Reps</span>
+                    <span><i class="fa-solid fa-clock"></i> 60s</span>
+                </div>
+                <div class="tip-box">Controle a descida: 3 segundos descendo sem despencar.</div>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="checkbox-container">
+                <input type="checkbox" onchange="updateProgress(this)">
+            </div>
+            <div class="content">
+                <span class="exercise-name">4. Cadeira Abdutora</span>
+                <div class="stats">
+                    <span><i class="fa-solid fa-layer-group"></i> 3 Séries</span>
+                    <span><i class="fa-solid fa-repeat"></i> 15 Reps</span>
+                    <span><i class="fa-solid fa-clock"></i> 45s</span>
+                </div>
+                <div class="tip-box">Tronco inclinado para frente segurando no apoio da máquina.</div>
+            </div>
+        </div>
+
+        <div class="exercise-card">
+            <div class="checkbox-container">
+                <input type="checkbox" onchange="updateProgress(this)">
+            </div>
+            <div class="content">
+                <span class="exercise-name">5. Extensão Cruzada na Polia</span>
+                <div class="stats">
+                    <span><i class="fa-solid fa-layer-group"></i> 3 Séries</span>
+                    <span><i class="fa-solid fa-repeat"></i> 15 Reps</span>
+                    <span><i class="fa-solid fa-clock"></i> 45s</span>
+                </div>
+                <div class="tip-box">Finalizador: Movimento lento, sem usar o corpo como impulso.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <strong>Dicas do Treinador:</strong>
+        <ul>
+            <li><strong>Ordem fixa:</strong> Dos exercícios pesados para os isolados.</li>
+            <li><strong>Progressão:</strong> Aumente o peso se as 12 reps ficarem fáceis.</li>
+            <li><strong>Cadência:</strong> 1s para subir e 3s para descer o peso.</li>
+        </ul>
+    </footer>
+</div>
+
+<script>
+    function updateProgress(checkbox) {
+        const card = checkbox.closest('.exercise-card');
+        if (checkbox.checked) {
+            card.classList.add('completed');
+        } else {
+            card.classList.remove('completed');
+        }
+
+        const total = document.querySelectorAll('input[type="checkbox"]').length;
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        const percentage = (checked / total) * 100;
+        
+        document.getElementById('progress-bar').style.width = percentage + '%';
+    }
+</script>
+
+</body>
+</html>
