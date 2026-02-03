@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treino de Ana Carolina - Personalizado</title>
+    <title>Treino de Laura Beatriz Rangel</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --primary: #d81b60;
             --primary-dark: #880e4f;
-            --bg: #f0f2f5;
+            --bg: #f4f7f6;
             --card-bg: #ffffff;
             --text: #2d3436;
+            --success: #00b894;
         }
 
         body {
@@ -32,42 +33,49 @@
         header {
             text-align: center;
             margin-bottom: 20px;
-            padding: 10px;
+            padding: 15px 10px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
 
         h1 {
             color: var(--primary);
             margin: 0;
-            font-size: 24px;
-            letter-spacing: -1px;
+            font-size: 22px;
+            letter-spacing: -0.5px;
+            text-transform: uppercase;
         }
 
         .subtitle {
             color: #636e72;
             font-size: 13px;
+            margin-top: 5px;
+            font-weight: 500;
         }
 
-        /* Menu de Dias */
+        /* Menu de Navegação por Dias */
         .tabs {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             background: #fff;
-            padding: 10px;
+            padding: 8px;
             border-radius: 12px;
             margin-bottom: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            overflow-x: auto;
         }
 
         .tab-btn {
             border: none;
             background: none;
-            padding: 8px 12px;
-            font-weight: bold;
-            color: #636e72;
+            padding: 10px 5px;
+            font-weight: 800;
+            color: #b2bec3;
             cursor: pointer;
+            flex: 1;
+            font-size: 12px;
+            transition: all 0.3s;
             border-bottom: 3px solid transparent;
-            white-space: nowrap;
         }
 
         .tab-btn.active {
@@ -75,99 +83,136 @@
             border-bottom: 3px solid var(--primary);
         }
 
-        .progress-container {
-            background: #dfe6e9;
-            border-radius: 10px;
-            height: 8px;
+        /* Barra de Progresso Diária */
+        .progress-wrapper {
+            padding: 0 5px;
             margin-bottom: 20px;
         }
 
+        .progress-container {
+            background: #dfe6e9;
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+        }
+
         #progress-bar {
-            background: var(--primary);
+            background: linear-gradient(90deg, var(--primary), #ff4081);
             width: 0%;
             height: 100%;
-            border-radius: 10px;
-            transition: width 0.3s ease;
+            transition: width 0.4s ease;
         }
 
         .day-content {
             display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .day-content.active {
             display: block;
         }
 
+        /* Cards de Exercício */
         .exercise-card {
             background: var(--card-bg);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            border-left: 5px solid #dfe6e9;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            border-left: 6px solid #dfe6e9;
             display: flex;
             align-items: flex-start;
+            transition: 0.3s;
         }
 
         .exercise-card.completed {
-            border-left-color: #00b894;
-            opacity: 0.6;
+            border-left-color: var(--success);
+            background-color: #f0fff4;
+        }
+
+        .exercise-card.completed .exercise-name {
+            text-decoration: line-through;
+            color: #95a5a6;
         }
 
         .checkbox-container {
-            margin-right: 12px;
-            padding-top: 3px;
+            margin-right: 15px;
+            padding-top: 4px;
         }
 
         input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             accent-color: var(--primary);
+            cursor: pointer;
         }
 
         .content { flex: 1; }
 
         .exercise-name {
             font-weight: 700;
-            font-size: 16px;
+            font-size: 17px;
             color: var(--primary-dark);
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             display: block;
         }
 
         .stats {
             display: flex;
-            gap: 10px;
-            font-size: 12px;
+            gap: 15px;
+            font-size: 13px;
             color: #636e72;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
         }
 
+        .stats span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stats i { color: var(--primary); }
+
         .tip-box {
-            font-size: 12px;
+            font-size: 12.5px;
             background: #fff0f5;
-            padding: 8px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 10px;
             color: #555;
-            border-left: 3px solid var(--primary);
+            border-left: 4px solid var(--primary);
+            line-height: 1.4;
         }
 
         footer {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 25px;
+            padding: 20px;
             background: #2d3436;
             color: white;
-            border-radius: 12px;
-            font-size: 12px;
+            border-radius: 15px;
+            font-size: 13px;
+            text-align: center;
         }
+
+        footer ul {
+            text-align: left;
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        footer li { margin-bottom: 8px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>Treino Ana Carolina <i class="fa-solid fa-heart"></i></h1>
-        <p class="subtitle">Personalizado: Hipertrofia & Definição</p>
+        <h1>LAURA BEATRIZ RANGEL <i class="fa-solid fa-gem"></i></h1>
+        <p class="subtitle">Plano de Hipertrofia & Definição Feminina</p>
     </header>
 
     <div class="tabs">
@@ -178,8 +223,10 @@
         <button class="tab-btn" onclick="openDay(event, 'sexta')">SEX</button>
     </div>
 
-    <div class="progress-container">
-        <div id="progress-bar"></div>
+    <div class="progress-wrapper">
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+        </div>
     </div>
 
     <div id="segunda" class="day-content active">
@@ -187,32 +234,32 @@
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
                 <span class="exercise-name">Elevação Pélvica</span>
-                <div class="stats"><span>4x12</span><span>90s</span></div>
-                <div class="tip-box">Carga máxima. Segure 2s no topo.</div>
+                <div class="stats"><span><i class="fa-solid fa-layer-group"></i> 4x12</span><span><i class="fa-solid fa-clock"></i> 90s</span></div>
+                <div class="tip-box">Carga alta. Segure 2s no topo contraindo o glúteo ao máximo.</div>
             </div>
         </div>
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
                 <span class="exercise-name">Agachamento Búlgaro</span>
-                <div class="stats"><span>3x10</span><span>90s</span></div>
-                <div class="tip-box">Foco no equilíbrio. Tronco à frente.</div>
+                <div class="stats"><span><i class="fa-solid fa-layer-group"></i> 3x10</span><span><i class="fa-solid fa-clock"></i> 90s</span></div>
+                <div class="tip-box">Tronco levemente à frente. Foco total no equilíbrio e descida lenta.</div>
             </div>
         </div>
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
                 <span class="exercise-name">Step-up (Subida)</span>
-                <div class="stats"><span>3x12</span><span>60s</span></div>
-                <div class="tip-box">Desça em 3 segundos. Não dê impulso.</div>
+                <div class="stats"><span><i class="fa-solid fa-layer-group"></i> 3x12</span><span><i class="fa-solid fa-clock"></i> 60s</span></div>
+                <div class="tip-box">Não dê impulso com o pé de baixo. Força na perna de cima!</div>
             </div>
         </div>
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
                 <span class="exercise-name">Cadeira Abdutora</span>
-                <div class="stats"><span>3x15</span><span>45s</span></div>
-                <div class="tip-box">Incline o tronco. Sinta queimar a lateral.</div>
+                <div class="stats"><span><i class="fa-solid fa-layer-group"></i> 3x15</span><span><i class="fa-solid fa-clock"></i> 45s</span></div>
+                <div class="tip-box">Incline o tronco para frente. Sinta trabalhar a lateral do glúteo.</div>
             </div>
         </div>
     </div>
@@ -221,9 +268,9 @@
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
-                <span class="exercise-name">Puxada Aberta (Costas)</span>
+                <span class="exercise-name">Puxada Aberta</span>
                 <div class="stats"><span>3x12</span><span>60s</span></div>
-                <div class="tip-box">Traga a barra no peito, não no pescoço.</div>
+                <div class="tip-box">Traga a barra em direção ao peito, abrindo bem as costas.</div>
             </div>
         </div>
         <div class="exercise-card">
@@ -231,23 +278,15 @@
             <div class="content">
                 <span class="exercise-name">Desenvolvimento Halteres</span>
                 <div class="stats"><span>3x10</span><span>60s</span></div>
-                <div class="tip-box">Para ombros definidos. Controle a descida.</div>
+                <div class="tip-box">Para ombros definidos. Não deixe o cotovelo descer demais.</div>
             </div>
         </div>
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
-                <span class="exercise-name">Tríceps Corda</span>
-                <div class="stats"><span>3x12</span><span>45s</span></div>
-                <div class="tip-box">Estique o braço todo e abra a corda no final.</div>
-            </div>
-        </div>
-        <div class="exercise-card">
-            <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
-            <div class="content">
-                <span class="exercise-name">Abdominal Supra</span>
+                <span class="exercise-name">Abdominal Infra (Elevação Pernas)</span>
                 <div class="stats"><span>3x20</span><span>30s</span></div>
-                <div class="tip-box">Solte o ar na subida e contraia o abdômen.</div>
+                <div class="tip-box">Mantenha a lombar colada no chão ao descer as pernas.</div>
             </div>
         </div>
     </div>
@@ -258,7 +297,7 @@
             <div class="content">
                 <span class="exercise-name">Leg Press 45º</span>
                 <div class="stats"><span>4x12</span><span>90s</span></div>
-                <div class="tip-box">Pés na largura dos ombros. Não estique tudo o joelho.</div>
+                <div class="tip-box">Pés paralelos. Não bloqueie o joelho no final da subida.</div>
             </div>
         </div>
         <div class="exercise-card">
@@ -266,7 +305,7 @@
             <div class="content">
                 <span class="exercise-name">Cadeira Extensora</span>
                 <div class="stats"><span>3x15</span><span>45s</span></div>
-                <div class="tip-box">Segure 1s em cima. Movimento controlado.</div>
+                <div class="tip-box">Série para "queimar". Faça 2s de isometria em cima.</div>
             </div>
         </div>
         <div class="exercise-card">
@@ -274,7 +313,7 @@
             <div class="content">
                 <span class="exercise-name">Agachamento Sumô</span>
                 <div class="stats"><span>3x12</span><span>60s</span></div>
-                <div class="tip-box">Pés afastados. Desça o máximo que conseguir.</div>
+                <div class="tip-box">Pés bem afastados para pegar interno de coxa e glúteo.</div>
             </div>
         </div>
     </div>
@@ -285,7 +324,7 @@
             <div class="content">
                 <span class="exercise-name">Stiff com Halteres</span>
                 <div class="stats"><span>4x10</span><span>90s</span></div>
-                <div class="tip-box">Coluna reta. Sinta alongar bem a parte de trás.</div>
+                <div class="tip-box">Jogue o quadril para trás. Sinta alongar o posterior da coxa.</div>
             </div>
         </div>
         <div class="exercise-card">
@@ -293,15 +332,15 @@
             <div class="content">
                 <span class="exercise-name">Cadeira Flexora</span>
                 <div class="stats"><span>3x12</span><span>60s</span></div>
-                <div class="tip-box">Aperte bem embaixo e suba devagar.</div>
+                <div class="tip-box">Mantenha o quadril bem firme no banco durante o movimento.</div>
             </div>
         </div>
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
-                <span class="exercise-name">Panturrilha em Pé</span>
+                <span class="exercise-name">Panturrilha Sentada</span>
                 <div class="stats"><span>4x20</span><span>30s</span></div>
-                <div class="tip-box">Suba no máximo, desça até alongar tudo.</div>
+                <div class="tip-box">Movimento completo: desça bem o calcanhar e suba no máximo.</div>
             </div>
         </div>
     </div>
@@ -310,36 +349,38 @@
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
-                <span class="exercise-name">Afundo em Deslocamento</span>
+                <span class="exercise-name">Afundo em Passada</span>
                 <div class="stats"><span>3x20 passos</span><span>60s</span></div>
-                <div class="tip-box">Passada larga para ativar mais o glúteo.</div>
+                <div class="tip-box">Faça caminhando pela academia se houver espaço.</div>
             </div>
         </div>
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
-                <span class="exercise-name">Glúteo na Polia (Crossover)</span>
+                <span class="exercise-name">Glúteo Cabo (Crossover)</span>
                 <div class="stats"><span>3x15</span><span>45s</span></div>
-                <div class="tip-box">Chute para trás e para cima levemente em diagonal.</div>
+                <div class="tip-box">Chute controlado para trás. Não use a lombar para balançar.</div>
             </div>
         </div>
         <div class="exercise-card">
             <div class="checkbox-container"><input type="checkbox" onchange="check(this)"></div>
             <div class="content">
                 <span class="exercise-name">Caminhada Inclinada</span>
-                <div class="stats"><span>15 min</span><span>Esteira</span></div>
-                <div class="tip-box">Inclinação 5.0 a 8.0. Velocidade moderada.</div>
+                <div class="stats"><span>20 min</span><span>Esteira</span></div>
+                <div class="tip-box">Incline a esteira (nível 6-10). Ótimo para definição.</div>
             </div>
         </div>
     </div>
 
     <footer>
-        <strong>Recado para Ana Carolina:</strong>
+        <i class="fa-solid fa-quote-left"></i>
+        <strong>Dicas do Paizão para Laura:</strong>
         <ul>
-            <li>A constância é o que traz o resultado.</li>
-            <li>Beba 2L de água por dia.</li>
-            <li>Descanse bem aos finais de semana!</li>
+            <li>Aumente as cargas gradualmente quando ficar fácil.</li>
+            <li>A técnica correta vale mais que muito peso.</li>
+            <li>Hidratação é fundamental durante o treino!</li>
         </ul>
+        <p style="margin-top: 15px; font-size: 11px; color: #bdc3c7;">Orgulho da sua dedicação! 💪✨</p>
     </footer>
 </div>
 
@@ -372,6 +413,9 @@
         const percentage = checkboxes.length ? (checked.length / checkboxes.length) * 100 : 0;
         document.getElementById('progress-bar').style.width = percentage + '%';
     }
+    
+    // Iniciar com o progresso zerado
+    window.onload = updateProgressBar;
 </script>
 
 </body>
